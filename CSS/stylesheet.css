@@ -1,7 +1,3 @@
-/* #leftsideform {
-  display: inline-block;
+#allcontent {
+  display: flex;
 }
-
-.container {
-  position: relative;
-} */

@@ -18,7 +18,7 @@
       href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="CSS/style.css" />
+    <link rel="stylesheet" href="./CSS/stylesheet.css" />
     <title>Work Day Scheduler</title>
   </head>
 
@@ -26,47 +26,45 @@
     <nav class="navbar navbar-light bg-light">
       <span class="navbar-brand mb-0 h1">Weather Dashboard</span>
     </nav>
-    <div class="card" style="width: 18rem;" id="leftsideform">
-      <nav class="navbar navbar-light bg-light">
-        <form class="form-inline">
-          <input
-            class="form-control mr-sm-2"
-            type="search"
-            placeholder="Search for a City"
-            aria-label="Search"
-          />
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-            Search
-          </button>
-        </form>
-      </nav>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">Cras justo odio</li>
-        <li class="list-group-item">Dapibus ac facilisis in</li>
-        <li class="list-group-item">Vestibulum at eros</li>
-        <li class="list-group-item">Vestibulum at eros</li>
-        <li class="list-group-item">Vestibulum at eros</li>
-        <li class="list-group-item">Vestibulum at eros</li>
-        <li class="list-group-item">Vestibulum at eros</li>
-        <li class="list-group-item">Vestibulum at eros</li>
-      </ul>
-    </div>
-    <div class="container">
-      <div class="row">
-        <div class="card text-center">
-          <div class="card-header">
-            Featured
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">
-              With supporting text below as a natural lead-in to additional
-              content.
-            </p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-          <div class="card-footer text-muted">
-            2 days ago
+    <div id="allcontent">
+      <div class="card" style="width: 18rem;">
+        <nav class="navbar navbar-light bg-light">
+          <form class="form-inline">
+            <input
+              class="form-control mr-sm-2"
+              type="search"
+              placeholder="Search for a City"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">
+              Search
+            </button>
+          </form>
+        </nav>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><a href="#">Austin</a></li>
+          <li class="list-group-item">Chicago</li>
+          <li class="list-group-item">New York</li>
+          <li class="list-group-item">San Francisco</li>
+          <li class="list-group-item">Los Angeles</li>
+          <li class="list-group-item">Seattle</li>
+          <li class="list-group-item">Miami</li>
+          <li class="list-group-item">DC</li>
+        </ul>
+      </div>
+      <!-- <div class="container">
+        <div class="row"> -->
+          <div class="card">
+            <div class="card-header">
+              Featured
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Special title treatment</h5>
+              <p class="card-text">
+                With supporting text below as a natural lead-in to additional
+                content.
+              </p>
+            </div>
           </div>
         </div>
       </div>
