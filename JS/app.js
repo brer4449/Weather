@@ -1,8 +1,8 @@
 let apiKey = "38068f8dbeb00ea35c18384c9fb8712c";
-// let queryURL = `http://api.openweathermap.org/data/2.5/forecast?id=524901&units=imperial&APPID=${apiKey}`;
+let queryURL = `http://api.openweathermap.org/data/2.5/forecast?id=524901&units=imperial&APPID=${apiKey}`;
 let moscowLon = "37.6156";
 let moscowLat = "55.7522";
-// let uvURL = `http://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${moscowLat}&lon=${moscowLon}`;
+let uvURL = `http://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${moscowLat}&lon=${moscowLon}`;
 
 $.ajax({
   url: queryURL,
