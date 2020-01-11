@@ -6,6 +6,7 @@ $("document").ready(function() {
   let uvURL = `http://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${moscowLat}&lon=${moscowLon}`;
   let searchInput = $("input#searchinput");
   let searchBtn = $("button#search");
+
   searchBtn.on("click", function(e) {
     e.preventDefault();
     let citySearch = searchInput.val();
@@ -15,17 +16,24 @@ $("document").ready(function() {
       method: "GET"
     }).then(function(response) {
       //Assigning text content of corresponding element tag from API
-      $("h3#cityname").text(response.city.name);
+
+      $("h3#cityname").text(`${response.city.name}`);
+      $("img#icon").attr(
+        "src",
+        `http://openweathermap.org/img/wn/${response.list[0].weather[0].icon}@2x.png`
+      );
       $("h5#temp").text(`Temperature: ${response.list[0].main.temp}°F`);
       $("p#humidity").text(`Humidity: ${response.list[0].main.humidity}%`);
       $("p#windspeed").text(`Wind: ${response.list[0].wind.speed} mph`);
+      let cityLat = response.city.coord.lat;
+      let cityLon = response.city.coord.lon;
     });
-  });
-
-  $.ajax({
-    url: uvURL,
-    method: "GET"
-  }).then(function(response) {
-    $("p#uvindex").text(`UV Index: ${response.value}`);
+    uvURL = `http://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${moscowLat}&lon=${moscowLon}`;
+    $.ajax({
+      url: uvURL,
+      method: "GET"
+    }).then(function(response) {
+      $("p#uvindex").text(`UV Index: ${response.value}`);
+    });
   });
 });
