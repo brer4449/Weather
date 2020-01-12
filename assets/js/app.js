@@ -38,18 +38,9 @@ $("document").ready(function () {
       });
 
       for (let i = 1; i < 6; i++) {
-        $(`div#${i}`)
-          .find($("img.icon"))
-          .attr(
-            "src",
-            `http://openweathermap.org/img/wn/${response.list[8 * i - 1].weather[0].icon}@2x.png`
-          );
-        $(`div#${i}`)
-          .find($("p.temp"))
-          .text(`Temp: ${response.list[8 * i - 1].main.temp}°F`);
-        $(`div#${i}`)
-          .find($("p.humidity"))
-          .text(`Humidity: ${response.list[8 * i - 1].main.humidity}%`);
+        $(`div#${i}`).find($("img.icon")).attr("src", `http://openweathermap.org/img/wn/${response.list[8 * i - 1].weather[0].icon}@2x.png`);
+        $(`div#${i}`).find($("p.temp")).text(`Temp: ${response.list[8 * i - 1].main.temp}°F`);
+        $(`div#${i}`).find($("p.humidity")).text(`Humidity: ${response.list[8 * i - 1].main.humidity}%`);
       }
     });
   });
@@ -79,16 +70,9 @@ $("document").ready(function () {
       });
 
       for (let i = 1; i < 6; i++) {
-        $(`div#${i}`)
-          .find($("img.icon"))
-          .attr("src", `http://openweathermap.org/img/wn/${response.list[8 * i - 1].weather[0].icon}@2x.png`
-          );
-        $(`div#${i}`)
-          .find($("p.temp"))
-          .text(`Temp: ${response.list[8 * i - 1].main.temp}°F`);
-        $(`div#${i}`)
-          .find($("p.humidity"))
-          .text(`Humidity: ${response.list[8 * i - 1].main.humidity}%`);
+        $(`div#${i}`).find($("img.icon")).attr("src", `http://openweathermap.org/img/wn/${response.list[8 * i - 1].weather[0].icon}@2x.png`);
+        $(`div#${i}`).find($("p.temp")).text(`Temp: ${response.list[8 * i - 1].main.temp}°F`);
+        $(`div#${i}`).find($("p.humidity")).text(`Humidity: ${response.list[8 * i - 1].main.humidity}%`);
       };
     });
   });
