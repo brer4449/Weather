@@ -1,23 +1,25 @@
 $("document").ready(function () {
   let apiKey = "38068f8dbeb00ea35c18384c9fb8712c";
   let queryURL = `http://api.openweathermap.org/data/2.5/forecast?id=524901&units=imperial&APPID=${apiKey}`;
-  let moscowLon = "37.6156";
-  let moscowLat = "55.7522";
-  let uvURL = `http://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${moscowLat}&lon=${moscowLon}`;
+  let currentLon = "37.6156";
+  let currentLat = "55.7522";
+  let uvURL = `http://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${currentLat}&lon=${currentLon}`;
   let searchInput = $("input#searchinput");
   let searchBtn = $("button#search");
   let cityBtn = $("button.button");
+  let currentdate = moment().format("L");
+  $("h6#date").text(currentdate);
+
   cityBtn.on("click", function (e) {
     e.preventDefault();
-    queryURL = `http://api.openweathermap.org/data/2.5/forecast?q=${$(
-      this
-    ).text()},us&units=imperial&APPID=${apiKey}`;
+    queryURL = `http://api.openweathermap.org/data/2.5/forecast?q=${$(this).text()},us&units=imperial&APPID=${apiKey}`;
     $.ajax({
       url: queryURL,
       method: "GET"
     }).then(function (response) {
       //Assigning text content of button to API
       $("h3#cityname").text(`${response.city.name}`);
+      console.log(currentdate);
       $("img#icon").attr(
         "src",
         `http://openweathermap.org/img/wn/${response.list[0].weather[0].icon}@2x.png`
@@ -34,6 +36,7 @@ $("document").ready(function () {
       }).then(function (response) {
         $("p#uvindex").text(`UV Index: ${response.value}`);
       });
+
       for (let i = 1; i < 6; i++) {
         $(`div#${i}`)
           .find($("img.icon"))
@@ -50,6 +53,7 @@ $("document").ready(function () {
       }
     });
   });
+
   searchBtn.on("click", function (e) {
     e.preventDefault();
     let citySearch = searchInput.val();
@@ -73,12 +77,11 @@ $("document").ready(function () {
       }).then(function (response) {
         $("p#uvindex").text(`UV Index: ${response.value}`);
       });
+
       for (let i = 1; i < 6; i++) {
         $(`div#${i}`)
           .find($("img.icon"))
-          .attr(
-            "src",
-            `http://openweathermap.org/img/wn/${response.list[8 * i - 1].weather[0].icon}@2x.png`
+          .attr("src", `http://openweathermap.org/img/wn/${response.list[8 * i - 1].weather[0].icon}@2x.png`
           );
         $(`div#${i}`)
           .find($("p.temp"))
@@ -86,7 +89,6 @@ $("document").ready(function () {
         $(`div#${i}`)
           .find($("p.humidity"))
           .text(`Humidity: ${response.list[8 * i - 1].main.humidity}%`);
-
       };
     });
   });

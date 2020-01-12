@@ -4,5 +4,11 @@
 
 .fiveDay {
   background-color: #008ecc;
-  width: 50%;
+  width: 25%;
+}
+
+#forecast{
+  display: flex;
+  /* margin-right: 10px;
+  overflow: hidden; */
 }

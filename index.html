@@ -1,104 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-      crossorigin="anonymous"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./CSS/stylesheet.css" />
-    <title>Weather Dashboard</title>
-  </head>
 
-  <body>
-    <nav class="navbar navbar-light bg-light">
-      <span class="navbar-brand mb-0 h1">Weather Dashboard</span>
-    </nav>
-    <div id="allcontent">
-      <div class="card" style="width: 18rem;">
-        <nav class="navbar navbar-light bg-light">
-          <form class="form-inline">
-            <input
-              class="form-control mr-sm-2"
-              type="search"
-              placeholder="Search for a City"
-              aria-label="Search"
-              id="searchinput"
-            />
-            <button class="btn btn-outline-info my-2 my-sm-0" type="submit" id="search">
-              Search
-            </button>
-          </form>
-        </nav>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item"><button class="btn btn-info button">Austin</button></li>
-          <li class="list-group-item"><button class="btn btn-info button">Chicago</button></li>
-          <li class="list-group-item"><button class="btn btn-info button">New York</button></li>
-          <li class="list-group-item"><button class="btn btn-info button">San Francisco</button></li>
-          <li class="list-group-item"><button class="btn btn-info button">Los Angeles</button></li>
-          <li class="list-group-item"><button class="btn btn-info button">Seattle</button></li>
-          <li class="list-group-item"><button class="btn btn-info button">Miami</button></li>
-          <li class="list-group-item"><button class="btn btn-info button">District of Columbia</button></li>
-        </ul>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./CSS/stylesheet.css" />
+  <title>Weather Dashboard</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-light bg-light">
+    <span class="navbar-brand mb-0 h1">Weather Dashboard</span>
+  </nav>
+  <div id="allcontent">
+    <div class="card" style="width: 18rem;">
+      <nav class="navbar navbar-light bg-light">
+        <form class="form-inline">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search for a City" aria-label="Search"
+            id="searchinput" />
+          <button class="btn btn-outline-info my-2 my-sm-0" type="submit" id="search">
+            Search
+          </button>
+        </form>
+      </nav>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><button class="btn btn-primary button">Austin</button></li>
+        <li class="list-group-item"><button class="btn btn-primary button">Chicago</button></li>
+        <li class="list-group-item"><button class="btn btn-primary button">New York</button></li>
+        <li class="list-group-item"><button class="btn btn-primary button">San Francisco</button></li>
+        <li class="list-group-item"><button class="btn btn-primary button">Los Angeles</button></li>
+        <li class="list-group-item"><button class="btn btn-primary button">Seattle</button></li>
+        <li class="list-group-item"><button class="btn btn-primary button">Miami</button></li>
+        <li class="list-group-item"><button class="btn btn-primary button">District of Columbia</button></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <h3 id="cityname"></h3>
+        <img id="icon">
       </div>
-        <div class="card">
-          <div class="card-header">
-            <h3 id="cityname"></h3>
-            <img id="icon">
-          </div>
-          <div class="card-body">
-            <h5 class="card-title" id="temp"></h5>
-            <p class="card-text" id="humidity"></p>
-            <p class="card-text" id="windspeed"></p>
-            <p class="card-text" id="uvindex"></p>
-          </div>
-        </div>
-      </div>
-      <h3>5-Day Forecast:</h3>
-      <div class="fiveDay" id=1>
-        <h3 class="date">Date: </h3>
-        <img class="icon">
-        <p class="temp">Hello</p>
-        <p class="humidity"></p>
-      </div>
-      <div class="fiveDay" id=2>
-        <h3 class="date">Date: </h3>
-        <img class="icon">
-        <p class="temp">Hi</p>
-        <p class="humidity"></p>
-      </div>
-      <div class="fiveDay" id=3>
-        <h3 class="date">Date: </h3>
-        <img class="icon">
-        <p class="temp">it me!</p>
-        <p class="humidity"></p>
-      </div>
-      <div class="fiveDay" id=4>
-        <h3 class="date">Date: </h3>
-        <img class="icon">
-        <p class="temp">sup dude?</p>
-        <p class="humidity"></p>
-      </div>
-      <div class="fiveDay" id=5>
-        <h3 class="date">Date: </h3>
-        <img class="icon">
-        <p class="temp">nm, u?</p>
-        <p class="humidity"></p>
+      <div class="card-body">
+        <h5 class="card-title" id="temp"></h5>
+        <h6 class="card-text" id="date"></h6>
+        <p class="card-text" id="humidity"></p>
+        <p class="card-text" id="windspeed"></p>
+        <p class="card-text" id="uvindex"></p>
       </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="./JS/app.js"></script>
-  </body>
+  </div>
+  <div id="forecast">
+    <h3>5-Day Forecast:</h3>
+    <div class="fiveDay" id=1>
+      <h3 class="date"></h3>
+      <img class="icon">
+      <p class="temp"></p>
+      <p class="humidity"></p>
+    </div>
+    <div class="fiveDay" id=2>
+      <h3 class="date"></h3>
+      <img class="icon">
+      <p class="temp"></p>
+      <p class="humidity"></p>
+    </div>
+    <div class="fiveDay" id=3>
+      <h3 class="date"></h3>
+      <img class="icon">
+      <p class="temp"></p>
+      <p class="humidity"></p>
+    </div>
+    <div class="fiveDay" id=4>
+      <h3 class="date"></h3>
+      <img class="icon">
+      <p class="temp"></p>
+      <p class="humidity"></p>
+    </div>
+    <div class="fiveDay" id=5>
+      <h3 class="date"></h3>
+      <img class="icon">
+      <p class="temp"></p>
+      <p class="humidity"></p>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="./JS/app.js"></script>
+</body>
+
 </html>
