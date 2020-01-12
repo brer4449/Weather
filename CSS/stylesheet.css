@@ -1,3 +1,8 @@
 #allcontent {
   display: flex;
 }
+
+.fiveDay {
+  background-color: #008ecc;
+  width: 50%;
+}
