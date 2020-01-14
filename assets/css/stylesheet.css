@@ -1,23 +1,15 @@
-/* #allcontent {
-  display: flex;
-} */
 #leftcontent{
   float: left;
 }
 
 .fiveDay {
   background-color: #008ecc;
-  width: 25%;
+  width: 15%;
   border-radius: 10px;
-  justify-content: space-around;
 }
 
-#white{
-  background-color: white;
-}
-
-#forecast{
-  display: flex;
+/* #forecast{ */
+  /* display: flex; */
   /* margin-right: 10px;
   overflow: hidden; */
-}
+/* } */

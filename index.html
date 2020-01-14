@@ -29,17 +29,17 @@
         </form>
       </nav>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item"><button class="btn btn-primary button">Austin</button></li>
-        <li class="list-group-item"><button class="btn btn-primary button">Chicago</button></li>
-        <li class="list-group-item"><button class="btn btn-primary button">New York</button></li>
-        <li class="list-group-item"><button class="btn btn-primary button">San Francisco</button></li>
-        <li class="list-group-item"><button class="btn btn-primary button">Los Angeles</button></li>
-        <li class="list-group-item"><button class="btn btn-primary button">Seattle</button></li>
-        <li class="list-group-item"><button class="btn btn-primary button">Miami</button></li>
-        <li class="list-group-item"><button class="btn btn-primary button">District of Columbia</button></li>
+        <li class="list-group-item"></li>
+        <li class="list-group-item"></li>
+        <li class="list-group-item"></li>
+        <li class="list-group-item"></li>
+        <li class="list-group-item"></li>
+        <li class="list-group-item"></li>
+        <li class="list-group-item"></li>
+        <li class="list-group-item"></li>
       </ul>
     </div>
-    <div class="card">
+    <div class="card text-center">
       <div class="card-header">
         <h3 id="cityname"></h3>
         <img id="icon">
@@ -53,37 +53,39 @@
       </div>
     </div>
   </div>
-  <div id="forecast">
-    <h3>5-Day Forecast:</h3>
-    <div class="fiveDay" id=1>
-      <h3 class="date"></h3>
-      <img class="icon">
-      <p class="temp"></p>
-      <p class="humidity"></p>
-    </div>
-    <div class="fiveDay" id=2>
-      <h3 class="date"></h3>
-      <img class="icon">
-      <p class="temp"></p>
-      <p class="humidity"></p>
-    </div>
-    <div class="fiveDay" id=3>
-      <h3 class="date"></h3>
-      <img class="icon">
-      <p class="temp"></p>
-      <p class="humidity"></p>
-    </div>
-    <div class="fiveDay" id=4>
-      <h3 class="date"></h3>
-      <img class="icon">
-      <p class="temp"></p>
-      <p class="humidity"></p>
-    </div>
-    <div class="fiveDay" id=5>
-      <h3 class="date"></h3>
-      <img class="icon">
-      <p class="temp"></p>
-      <p class="humidity"></p>
+  <h3>5-Day Forecast:</h3>
+  <div class="container">
+    <div class="row" id="forecast">
+      <div class="fiveDay col-2" id=1>
+        <h3 class="date"></h3>
+        <img class="icon">
+        <p class="temp"></p>
+        <p class="humidity"></p>
+      </div>
+      <div class="fiveDay col-2" id=2>
+        <h3 class="date"></h3>
+        <img class="icon">
+        <p class="temp"></p>
+        <p class="humidity"></p>
+      </div>
+      <div class="fiveDay col-2" id=3>
+        <h3 class="date"></h3>
+        <img class="icon">
+        <p class="temp"></p>
+        <p class="humidity"></p>
+      </div>
+      <div class="fiveDay col-2" id=4>
+        <h3 class="date"></h3>
+        <img class="icon">
+        <p class="temp"></p>
+        <p class="humidity"></p>
+      </div>
+      <div class="fiveDay col-2" id=5>
+        <h3 class="date"></h3>
+        <img class="icon">
+        <p class="temp"></p>
+        <p class="humidity"></p>
+      </div>
     </div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
