@@ -3,10 +3,10 @@
 }
 
 .fiveDay {
-  background-color: #008ecc;
+  background-color: #428bca;
   width: 15%;
   border-radius: 10px;
-  padding: 5px;
+  padding-right: 10px;
   display: inline-block;
 }
 
