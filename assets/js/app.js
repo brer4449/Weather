@@ -51,11 +51,11 @@ $("document").ready(function () {
       //for loop to dynamically create div contens for 5 day forecast, set the i to 1 and multiplying by 8 since the objects returned from the response are 3 hour increments (3*8=24) so essentially going to the next day. Only 39 objects so subtracting one at the end so it doesn't get mad
       for (let i = 1; i < 6; i++) {
         //setting the sauce for image tag of that specific day's icon using the response chain
-        $(`div#${i}`).find($("img.icon")).attr("src", `http://openweathermap.org/img/wn/${response.list[8 * i - 1].weather[0].icon}@2x.png`);
+        $(`span#${i}`).find($("img.icon")).attr("src", `http://openweathermap.org/img/wn/${response.list[8 * i - 1].weather[0].icon}@2x.png`);
         //splitting this node(?) to separate date and time, and then just printing out date (index 0 of the split array)
-        $(`div#${i}`).find($("h3.date")).text(`${response.list[8 * i - 1].dt_txt.split(" ")[0]}`)
-        $(`div#${i}`).find($("p.temp")).text(`Temp: ${response.list[8 * i - 1].main.temp}°F`);
-        $(`div#${i}`).find($("p.humidity")).text(`Humidity: ${response.list[8 * i - 1].main.humidity}%`);
+        $(`span#${i}`).find($("h3.date")).text(`${response.list[8 * i - 1].dt_txt.split(" ")[0]}`)
+        $(`span#${i}`).find($("p.temp")).text(`Temp: ${response.list[8 * i - 1].main.temp}°F`);
+        $(`span#${i}`).find($("p.humidity")).text(`Humidity: ${response.list[8 * i - 1].main.humidity}%`);
       }
 
     });
@@ -87,10 +87,10 @@ $("document").ready(function () {
       });
       function fiveDayForecast() {
         for (let i = 1; i < 6; i++) {
-          $(`div#${i}`).find($("img.icon")).attr("src", `http://openweathermap.org/img/wn/${response.list[8 * i - 1].weather[0].icon}@2x.png`);
-          $(`div#${i}`).find($("h3.date")).text(`${response.list[8 * i - 1].dt_txt}`)
-          $(`div#${i}`).find($("p.temp")).text(`Temp: ${response.list[8 * i - 1].main.temp}°F`);
-          $(`div#${i}`).find($("p.humidity")).text(`Humidity: ${response.list[8 * i - 1].main.humidity}%`);
+          $(`span#${i}`).find($("img.icon")).attr("src", `http://openweathermap.org/img/wn/${response.list[8 * i - 1].weather[0].icon}@2x.png`);
+          $(`span#${i}`).find($("h3.date")).text(`${response.list[8 * i - 1].dt_txt}`)
+          $(`span#${i}`).find($("p.temp")).text(`Temp: ${response.list[8 * i - 1].main.temp}°F`);
+          $(`span#${i}`).find($("p.humidity")).text(`Humidity: ${response.list[8 * i - 1].main.humidity}%`);
         }
       }
       fiveDayForecast();
@@ -122,9 +122,9 @@ $("document").ready(function () {
       });
 
       for (let i = 1; i < 6; i++) {
-        $(`div#${i}`).find($("img.icon")).attr("src", `http://openweathermap.org/img/wn/${response.list[8 * i - 1].weather[0].icon}@2x.png`);
-        $(`div#${i}`).find($("p.temp")).text(`Temp: ${response.list[8 * i - 1].main.temp}°F`);
-        $(`div#${i}`).find($("p.humidity")).text(`Humidity: ${response.list[8 * i - 1].main.humidity}%`);
+        $(`span#${i}`).find($("img.icon")).attr("src", `http://openweathermap.org/img/wn/${response.list[8 * i - 1].weather[0].icon}@2x.png`);
+        $(`span#${i}`).find($("p.temp")).text(`Temp: ${response.list[8 * i - 1].main.temp}°F`);
+        $(`span#${i}`).find($("p.humidity")).text(`Humidity: ${response.list[8 * i - 1].main.humidity}%`);
       };
     });
   });
