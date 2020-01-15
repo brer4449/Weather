@@ -1,9 +1,6 @@
 $("document").ready(function () {
   let apiKey = "38068f8dbeb00ea35c18384c9fb8712c";
   let queryURL = `http://api.openweathermap.org/data/2.5/forecast?id=4138106&units=imperial&APPID=${apiKey}`;
-  // let currentLon = "37.6156";
-  // let currentLat = "55.7522";
-  // let uvURL = `http://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${currentLat}&lon=${currentLon}`;
   let searchInput = $("input#searchinput");
   let searchBtn = $("button#search");
   let cityBtn = $("button.button");
@@ -36,6 +33,7 @@ $("document").ready(function () {
       let cityLat = response.city.coord.lat;
       let cityLon = response.city.coord.lon;
       let uvURL = `http://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${cityLat}&lon=${cityLon}`;
+
       //nested AJAX to use first response to get coordinates of that specific city
       $.ajax({
         url: uvURL,
@@ -45,6 +43,7 @@ $("document").ready(function () {
           lat: cityLat,
           lon: cityLon
         }
+
       }).then(function (response) {
         $("p#uvindex").text(`UV Index: ${response.value}`);
       });
@@ -62,10 +61,31 @@ $("document").ready(function () {
   }
   //all of the above DOM elements created with this function:
   getData();
+
+  searchBtn.on("click", function (e) {
+    e.preventDefault();
+    let citySearch = searchInput.val();
+    let savedCities = JSON.parse(localStorage.getItem("savedCities"))
+    if (!savedCities) {
+      savedCities = [];
+    }
+    savedCities.push(citySearch);
+
+    localStorage.setItem("savedCities", JSON.stringify(savedCities));
+    for (let i = 0; i < savedCities.length; i++) {
+      let cityBtn = $("<button>");
+
+      cityBtn.text(savedCities[i]);
+      cityBtn.addClass("btn btn-primary");
+      // $(`li.${i}`).remove(cityBtn);
+      $(`li.${i}`).append(cityBtn);
+    }
+  });
   //On click event to fire off and get weather info of the city whose button was clicked
   cityBtn.on("click", function (e) {
     e.preventDefault();
     queryURL = `http://api.openweathermap.org/data/2.5/forecast?q=${$(this).text()},us&units=imperial&APPID=${apiKey}`;
+
     $.ajax({
       url: queryURL,
       method: "GET"
@@ -76,6 +96,7 @@ $("document").ready(function () {
       $("h6#date").text(response.list[0].dt_txt)
       $("p#humidity").text(`Humidity: ${response.list[0].main.humidity}%`);
       $("p#windspeed").text(`Wind: ${response.list[0].wind.speed} mph`);
+
       let cityLat = response.city.coord.lat;
       let cityLon = response.city.coord.lon;
       uvURL = `http://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${cityLat}&lon=${cityLon}`;
@@ -85,30 +106,20 @@ $("document").ready(function () {
       }).then(function (response) {
         $("p#uvindex").text(`UV Index: ${response.value}`);
       });
-      function fiveDayForecast() {
-        for (let i = 1; i < 6; i++) {
-          $(`span#${i}`).find($("img.icon")).attr("src", `http://openweathermap.org/img/wn/${response.list[8 * i - 1].weather[0].icon}@2x.png`);
-          $(`span#${i}`).find($("h3.date")).text(`${response.list[8 * i - 1].dt_txt}`)
-          $(`span#${i}`).find($("p.temp")).text(`Temp: ${response.list[8 * i - 1].main.temp}°F`);
-          $(`span#${i}`).find($("p.humidity")).text(`Humidity: ${response.list[8 * i - 1].main.humidity}%`);
-        }
+
+      for (let i = 1; i < 6; i++) {
+        $(`span#${i}`).find($("img.icon")).attr("src", `http://openweathermap.org/img/wn/${response.list[8 * i - 1].weather[0].icon}@2x.png`);
+        $(`span#${i}`).find($("h3.date")).text(`${response.list[8 * i - 1].dt_txt}`)
+        $(`span#${i}`).find($("p.temp")).text(`Temp: ${response.list[8 * i - 1].main.temp}°F`);
+        $(`span#${i}`).find($("p.humidity")).text(`Humidity: ${response.list[8 * i - 1].main.humidity}%`);
       }
-      fiveDayForecast();
     });
   });
-
-  searchBtn.on("click", function (e) {
-    e.preventDefault();
-    let citySearch = searchInput.val();
-    let savedCities = JSON.parse(localStorage.getItem("savedCities"))
-    if (!savedCities) {
-      savedCities = [];
-    }
-    savedCities.push(citySearch);
-    localStorage.setItem("savedCities", JSON.stringify(savedCities));
+});
 
 
-    queryURL = `http://api.openweathermap.org/data/2.5/forecast?q=${citySearch},us&units=imperial&APPID=${apiKey}`;
+/*
+queryURL = `http://api.openweathermap.org/data/2.5/forecast?q=${citySearch},us&units=imperial&APPID=${apiKey}`;
     $.ajax({
       url: queryURL,
       method: "GET"
@@ -134,7 +145,4 @@ $("document").ready(function () {
         $(`span#${i}`).find($("p.humidity")).text(`Humidity: ${response.list[8 * i - 1].main.humidity}%`);
       };
     });
-  });
-});
-
-
+    */
