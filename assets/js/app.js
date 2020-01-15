@@ -100,12 +100,19 @@ $("document").ready(function () {
   searchBtn.on("click", function (e) {
     e.preventDefault();
     let citySearch = searchInput.val();
+    let savedCities = JSON.parse(localStorage.getItem("savedCities"))
+    if (!savedCities) {
+      savedCities = [];
+    }
+    savedCities.push(citySearch);
+    localStorage.setItem("savedCities", JSON.stringify(savedCities));
+
+
     queryURL = `http://api.openweathermap.org/data/2.5/forecast?q=${citySearch},us&units=imperial&APPID=${apiKey}`;
     $.ajax({
       url: queryURL,
       method: "GET"
     }).then(function (response) {
-      console.log(response);
       $("h3#cityname").text(`${response.city.name}`);
       $("img#icon").attr("src", `http://openweathermap.org/img/wn/${response.list[0].weather[0].icon}@2x.png`);
       $("h5#temp").text(`Temperature: ${response.list[0].main.temp}°F`);
