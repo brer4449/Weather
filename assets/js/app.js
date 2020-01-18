@@ -3,10 +3,6 @@ $("document").ready(function () {
   let queryURL = `http://api.openweathermap.org/data/2.5/forecast?id=4138106&units=imperial&APPID=${apiKey}`;
   let searchInput = $("input#searchinput");
   let searchBtn = $("button#search");
-  let cityBtn = $("button.button");
-  let currentBtn = $(this).text();
-  //Sample UVI: https://samples.openweathermap.org/data/2.5/uvi?lat=37.75&lon=-122.37&appid=b6907d289e10d714a6e88b30761fae22
-  //Sample 5 Day: https://samples.openweathermap.org/data/2.5/forecast?id=524901&appid=b1b15e88fa797225412429c1c50c122a1
 
   //set creation of DOM elements and assigned values as well as double ajax call (one inside of the other) in this function
   function getData() {
@@ -25,7 +21,7 @@ $("document").ready(function () {
       //setting the sauce for image tag of that specific day's icon using the response chain
       $("img#icon").attr("src", `http://openweathermap.org/img/wn/${response.list[0].weather[0].icon}@2x.png`);
       $("h5#temp").text(`Temperature: ${response.list[0].main.temp}°F`);
-      //splitting this node(?) to separate date and time, and then just printing out date (index 0 of the split array) instead of both date and time
+      //splitting this node to separate date and time, and then just printing out date (index 0 of the split array) instead of both date and time
       $("h6#date").text(response.list[0].dt_txt.split(" ")[0]);
       $("p#humidity").text(`Humidity: ${response.list[0].main.humidity}%`);
       $("p#windspeed").text(`Wind: ${response.list[0].wind.speed} mph`);
@@ -47,14 +43,14 @@ $("document").ready(function () {
       }).then(function (response) {
         $("p#uvindex").text(`UV Index: ${response.value}`);
       });
-      //for loop to dynamically create div contens for 5 day forecast, set the i to 1 and multiplying by 8 since the objects returned from the response are 3 hour increments (3*8=24) so essentially going to the next day. Only 39 objects so subtracting one at the end so it doesn't get mad
+      //for loop to dynamically create div content for 5 day forecast, set the i to 1 and multiplying by 8 since the objects returned from the response are 3 hour increments (3*8=24) so essentially going to the next day. Only 39 objects so subtracting one at the end so it doesn't get mad
       for (let i = 1; i < 6; i++) {
         //setting the sauce for image tag of that specific day's icon using the response chain
-        $(`span#${i}`).find($("img.icon")).attr("src", `http://openweathermap.org/img/wn/${response.list[8 * i - 1].weather[0].icon}@2x.png`);
-        //splitting this node(?) to separate date and time, and then just printing out date (index 0 of the split array)
-        $(`span#${i}`).find($("h3.date")).text(`${response.list[8 * i - 1].dt_txt.split(" ")[0]}`)
-        $(`span#${i}`).find($("p.temp")).text(`Temp: ${response.list[8 * i - 1].main.temp}°F`);
-        $(`span#${i}`).find($("p.humidity")).text(`Humidity: ${response.list[8 * i - 1].main.humidity}%`);
+        $(`div#${i}`).find($("img.icon")).attr("src", `http://openweathermap.org/img/wn/${response.list[8 * i - 1].weather[0].icon}@2x.png`);
+        //splitting this node to separate date and time, and then just printing out date (index 0 of the split array)
+        $(`div#${i}`).find($("h3.date")).text(`${response.list[8 * i - 1].dt_txt.split(" ")[0]}`)
+        $(`div#${i}`).find($("p.temp")).text(`Temp: ${response.list[8 * i - 1].main.temp}°F`);
+        $(`div#${i}`).find($("p.humidity")).text(`Humidity: ${response.list[8 * i - 1].main.humidity}%`);
       }
 
     });
@@ -62,10 +58,13 @@ $("document").ready(function () {
   //all of the above DOM elements created with this function:
   getData();
 
+  //Event listener for click on search button
   searchBtn.on("click", function (e) {
     e.preventDefault();
     let citySearch = searchInput.val();
+    //clearing the input field after search commences
     searchInput.val("");
+    //setting local storage:
     let savedCities = JSON.parse(localStorage.getItem("savedCities"))
     if (!savedCities) {
       savedCities = [];
@@ -73,11 +72,11 @@ $("document").ready(function () {
     savedCities.push(citySearch);
     $(".list-group").empty();
     localStorage.setItem("savedCities", JSON.stringify(savedCities));
+    //for loop to dynamically added buttons from what's in local storage
     for (let i = 0; i < savedCities.length; i++) {
       let cityBtn = $("<button>");
       cityBtn.text(savedCities[i]);
       cityBtn.addClass("btn btn-primary");
-      // $(`li.${i}`).remove(cityBtn);
       $(".list-group").append(cityBtn);
 
       cityBtn.on("click", function (e) {
@@ -106,45 +105,13 @@ $("document").ready(function () {
           });
 
           for (let i = 1; i < 6; i++) {
-            $(`span#${i}`).find($("img.icon")).attr("src", `http://openweathermap.org/img/wn/${response.list[8 * i - 1].weather[0].icon}@2x.png`);
-            $(`span#${i}`).find($("h3.date")).text(`${response.list[8 * i - 1].dt_txt}`)
-            $(`span#${i}`).find($("p.temp")).text(`Temp: ${response.list[8 * i - 1].main.temp}°F`);
-            $(`span#${i}`).find($("p.humidity")).text(`Humidity: ${response.list[8 * i - 1].main.humidity}%`);
+            $(`div#${i}`).find($("img.icon")).attr("src", `http://openweathermap.org/img/wn/${response.list[8 * i - 1].weather[0].icon}@2x.png`);
+            $(`div#${i}`).find($("h3.date")).text(`${response.list[8 * i - 1].dt_txt}`)
+            $(`div#${i}`).find($("p.temp")).text(`Temp: ${response.list[8 * i - 1].main.temp}°F`);
+            $(`div#${i}`).find($("p.humidity")).text(`Humidity: ${response.list[8 * i - 1].main.humidity}%`);
           }
         });
       });
     }
   });
-  //On click event to fire off and get weather info of the city whose button was clicked
-
 });
-
-
-/*
-queryURL = `http://api.openweathermap.org/data/2.5/forecast?q=${citySearch},us&units=imperial&APPID=${apiKey}`;
-    $.ajax({
-      url: queryURL,
-      method: "GET"
-    }).then(function (response) {
-      $("h3#cityname").text(`${response.city.name}`);
-      $("img#icon").attr("src", `http://openweathermap.org/img/wn/${response.list[0].weather[0].icon}@2x.png`);
-      $("h5#temp").text(`Temperature: ${response.list[0].main.temp}°F`);
-      $("p#humidity").text(`Humidity: ${response.list[0].main.humidity}%`);
-      $("p#windspeed").text(`Wind: ${response.list[0].wind.speed} mph`);
-      let cityLat = response.city.coord.lat;
-      let cityLon = response.city.coord.lon;
-      uvURL = `http://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${cityLat}&lon=${cityLon}`;
-      $.ajax({
-        url: uvURL,
-        method: "GET"
-      }).then(function (response) {
-        $("p#uvindex").text(`UV Index: ${response.value}`);
-      });
-
-      for (let i = 1; i < 6; i++) {
-        $(`span#${i}`).find($("img.icon")).attr("src", `http://openweathermap.org/img/wn/${response.list[8 * i - 1].weather[0].icon}@2x.png`);
-        $(`span#${i}`).find($("p.temp")).text(`Temp: ${response.list[8 * i - 1].main.temp}°F`);
-        $(`span#${i}`).find($("p.humidity")).text(`Humidity: ${response.list[8 * i - 1].main.humidity}%`);
-      };
-    });
-    */
