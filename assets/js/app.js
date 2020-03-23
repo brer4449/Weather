@@ -1,5 +1,5 @@
-$("document").ready(function() {
-  let apiKey = "38068f8dbeb00ea35c18384c9fb8712c";
+$("document").ready(function () {
+  const apiKey = "38068f8dbeb00ea35c18384c9fb8712c";
   let queryURL = `http://api.openweathermap.org/data/2.5/forecast?id=4138106&units=imperial&APPID=${apiKey}`;
   const searchInput = $("input#searchinput");
   const searchBtn = $("button#search");
@@ -13,7 +13,7 @@ $("document").ready(function() {
         q: "Washington DC",
         appid: apiKey
       }
-    }).then(function(response) {
+    }).then(function (response) {
       //Default text when page loads
       //All of these DOM elements are hard coded with ids
       //Setting text/attr to the AJAX response specific object/array index
@@ -42,7 +42,7 @@ $("document").ready(function() {
           lat: cityLat,
           lon: cityLon
         }
-      }).then(function(response) {
+      }).then(function (response) {
         $("p#uvindex").text(`UV Index: ${response.value}`);
       });
       //for loop to dynamically create div content for 5 day forecast, set the i to 1 and multiplying by 8 since the objects returned from the response are 3 hour increments (3*8=24) so essentially going to the next day. Only 39 objects so subtracting one at the end so it doesn't get mad
@@ -53,7 +53,7 @@ $("document").ready(function() {
           .attr(
             "src",
             `http://openweathermap.org/img/wn/${
-              response.list[8 * i - 1].weather[0].icon
+            response.list[8 * i - 1].weather[0].icon
             }@2x.png`
           );
         //splitting this node to separate date and time, and then just printing out date (index 0 of the split array)
@@ -74,7 +74,7 @@ $("document").ready(function() {
   getData();
 
   //Event listener for click on search button
-  searchBtn.on("click", function(e) {
+  searchBtn.on("click", function (e) {
     e.preventDefault();
     let citySearch = searchInput.val();
     //clearing the input field after search commences
@@ -94,7 +94,7 @@ $("document").ready(function() {
       cityBtn.addClass("btn btn-primary");
       $(".list-group").append(cityBtn);
 
-      cityBtn.on("click", function(e) {
+      cityBtn.on("click", function (e) {
         e.preventDefault();
         queryURL = `http://api.openweathermap.org/data/2.5/forecast?q=${$(
           this
@@ -103,7 +103,7 @@ $("document").ready(function() {
         $.ajax({
           url: queryURL,
           method: "GET"
-        }).then(function(response) {
+        }).then(function (response) {
           $("h3#cityname").text(`${response.city.name}`);
           $("img#icon").attr(
             "src",
@@ -120,7 +120,7 @@ $("document").ready(function() {
           $.ajax({
             url: uvURL,
             method: "GET"
-          }).then(function(response) {
+          }).then(function (response) {
             $("p#uvindex").text(`UV Index: ${response.value}`);
           });
 
@@ -130,12 +130,12 @@ $("document").ready(function() {
               .attr(
                 "src",
                 `http://openweathermap.org/img/wn/${
-                  response.list[8 * i - 1].weather[0].icon
+                response.list[8 * i - 1].weather[0].icon
                 }@2x.png`
               );
             $(`div#${i}`)
               .find($("h3.date"))
-              .text(`${response.list[8 * i - 1].dt_txt}`);
+              .text(`${response.list[8 * i - 1].dt_txt.split(" ")[0]}`);
             $(`div#${i}`)
               .find($("p.temp"))
               .text(`Temp: ${response.list[8 * i - 1].main.temp}°F`);
