@@ -5,14 +5,10 @@ $("document").ready(function () {
   const searchBtn = $("button#search");
 
   //set creation of DOM elements and assigned values as well as double ajax call (one inside of the other) in this function
-  function getData() {
+  function getData(url) {
     $.ajax({
-      url: queryURL,
+      url: url,
       method: "GET",
-      data: {
-        q: "Washington DC",
-        appid: apiKey,
-      },
     }).then(function (response) {
       //Default text when page loads
       //All of these DOM elements are hard coded with ids
@@ -33,15 +29,10 @@ $("document").ready(function () {
       let cityLon = response.city.coord.lon;
       let uvURL = `http://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${cityLat}&lon=${cityLon}`;
 
-      //nested AJAX to use first response to get coordinates of that specific city
+      //nested AJAX to use first response to get coordinates and uv index of that specific city (urls from each ajax call are different)
       $.ajax({
         url: uvURL,
         method: "GET",
-        data: {
-          appid: apiKey,
-          lat: cityLat,
-          lon: cityLon,
-        },
       }).then(function (response) {
         $("p#uv-index").text(`UV Index: ${response.value}`);
       });
@@ -56,7 +47,7 @@ $("document").ready(function () {
               response.list[8 * i - 1].weather[0].icon
             }@2x.png`
           );
-        //splitting this node to separate date and time, and then just printing out date (index 0 of the split array)
+        //splitting this node to separate date and time, and then just printing out date (index 0 of the split array) without the time
         $(`div#${i}`)
           .find($("h3.date"))
           .text(`${response.list[8 * i - 1].dt_txt.split(" ")[0]}`);
@@ -71,7 +62,7 @@ $("document").ready(function () {
   }
 
   //all of the above DOM elements created with this function:
-  getData();
+  getData(queryURL);
 
   //Event listener for click on search button
   searchBtn.on("click", function (e) {
@@ -105,50 +96,7 @@ $("document").ready(function () {
           this
         ).text()},us&units=imperial&APPID=${apiKey}`;
 
-        $.ajax({
-          url: queryURL,
-          method: "GET",
-        }).then(function (response) {
-          $("h3#city-name").text(`${response.city.name}`);
-          $("img#icon").attr(
-            "src",
-            `http://openweathermap.org/img/wn/${response.list[0].weather[0].icon}@2x.png`
-          );
-          $("h5#temp").text(`Temperature: ${response.list[0].main.temp}°F`);
-          $("h6#date").text(response.list[0].dt_txt);
-          $("p#humidity").text(`Humidity: ${response.list[0].main.humidity}%`);
-          $("p#wind-speed").text(`Wind: ${response.list[0].wind.speed} mph`);
-
-          let cityLat = response.city.coord.lat;
-          let cityLon = response.city.coord.lon;
-          uvURL = `http://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${cityLat}&lon=${cityLon}`;
-          $.ajax({
-            url: uvURL,
-            method: "GET",
-          }).then(function (response) {
-            $("p#uv-index").text(`UV Index: ${response.value}`);
-          });
-
-          for (let i = 1; i < 6; i++) {
-            $(`div#${i}`)
-              .find($("img.icon"))
-              .attr(
-                "src",
-                `http://openweathermap.org/img/wn/${
-                  response.list[8 * i - 1].weather[0].icon
-                }@2x.png`
-              );
-            $(`div#${i}`)
-              .find($("h3.date"))
-              .text(`${response.list[8 * i - 1].dt_txt.split(" ")[0]}`);
-            $(`div#${i}`)
-              .find($("p.temp"))
-              .text(`Temp: ${response.list[8 * i - 1].main.temp}°F`);
-            $(`div#${i}`)
-              .find($("p.humidity"))
-              .text(`Humidity: ${response.list[8 * i - 1].main.humidity}%`);
-          }
-        });
+        getData(queryURL);
       });
     }
   });
