@@ -50,13 +50,16 @@ $("document").ready(function () {
         //splitting this node to separate date and time, and then just printing out date (index 0 of the split array) without the time
         $(`div#${i}`)
           .find($("h3.date"))
-          .text(`${response.list[8 * i - 1].dt_txt.split(" ")[0]}`);
+          .text(`${response.list[8 * i - 1].dt_txt.split(" ")[0]}`)
+          .attr("style", "color: white");
         $(`div#${i}`)
           .find($("p.temp"))
-          .text(`Temp: ${response.list[8 * i - 1].main.temp}°F`);
+          .text(`Temp: ${response.list[8 * i - 1].main.temp}°F`)
+          .attr("style", "color: white");
         $(`div#${i}`)
           .find($("p.humidity"))
-          .text(`Humidity: ${response.list[8 * i - 1].main.humidity}%`);
+          .text(`Humidity: ${response.list[8 * i - 1].main.humidity}%`)
+          .attr("style", "color: white");
       }
     });
   }
