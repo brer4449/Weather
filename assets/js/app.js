@@ -84,7 +84,11 @@ $("document").ready(function () {
     if (!savedCities) {
       savedCities = [];
     }
-    savedCities.push(citySearch);
+    if (savedCities.includes(citySearch) || citySearch === "") {
+      return;
+    } else {
+      savedCities.push(citySearch);
+    }
     $(".list-group").empty();
     localStorage.setItem("savedCities", JSON.stringify(savedCities));
     //for loop to dynamically added buttons from what's in local storage
@@ -92,6 +96,7 @@ $("document").ready(function () {
       let cityBtn = $("<button>");
       cityBtn.text(savedCities[i]);
       cityBtn.addClass("btn btn-primary");
+      cityBtn.attr("style", "margin: 2px");
       $(".list-group").append(cityBtn);
 
       cityBtn.on("click", function (e) {

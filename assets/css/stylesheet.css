@@ -6,14 +6,18 @@
   float: left;
 }
 
+#forecast {
+  margin-left: 21%;
+  margin-right: 0%;
+}
+
 .fiveDayDiv {
-  background-color: #428bca;
+  background-color: #007bff;
   width: 15%;
   border-radius: 10px;
   padding-right: 10px;
   margin-left: 10px;
   display: inline-table;
-  float: right;
 }
 
 h3 {
