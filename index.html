@@ -1,95 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/css/stylesheet.css" />
+    <title>Weather Dashboard</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./assets/css/stylesheet.css" />
-  <title>Weather Dashboard</title>
-</head>
-
-<body>
-  <nav class="navbar navbar-light bg-light">
-    <span class="navbar-brand mb-0 h1">Weather Dashboard</span>
-  </nav>
-  <div>
-    <div id="leftcontent" style="width: 18rem;">
-      <nav class="navbar navbar-light bg-light">
-        <form class="form-inline">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search for a City" aria-label="Search"
-            id="searchinput" />
-          <button class="btn btn-outline-primary my-2 my-sm-0" id="search">
-            Search
-          </button>
-        </form>
-      </nav>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item 0"></li>
-        <li class="list-group-item 1"></li>
-        <li class="list-group-item 2"></li>
-        <li class="list-group-item 3"></li>
-        <li class="list-group-item 4"></li>
-        <li class="list-group-item 5"></li>
-        <li class="list-group-item 6"></li>
-        <li class="list-group-item 7"></li>
-      </ul>
-    </div>
-    <div class="card text-center">
-      <div class="card-header">
-        <h3 id="cityname"></h3>
-        <img id="icon">
+  <body>
+    <nav class="navbar navbar-light bg-light">
+      <span class="navbar-brand mb-0 h1">Weather Dashboard</span>
+    </nav>
+    <div>
+      <div id="left-content" style="width: 18rem;">
+        <nav class="navbar navbar-light bg-light">
+          <form class="form-inline">
+            <input
+              class="form-control mr-sm-2"
+              type="search"
+              placeholder="Search for a City"
+              aria-label="Search"
+              id="search-input"
+            />
+            <button class="btn btn-outline-primary my-2 my-sm-0" id="search">
+              Search
+            </button>
+          </form>
+        </nav>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item 0"></li>
+          <li class="list-group-item 1"></li>
+          <li class="list-group-item 2"></li>
+          <li class="list-group-item 3"></li>
+          <li class="list-group-item 4"></li>
+          <li class="list-group-item 5"></li>
+          <li class="list-group-item 6"></li>
+          <li class="list-group-item 7"></li>
+        </ul>
       </div>
-      <div class="card-body">
-        <h5 class="card-title" id="temp"></h5>
-        <h6 class="card-text" id="date"></h6>
-        <p class="card-text" id="humidity"></p>
-        <p class="card-text" id="windspeed"></p>
-        <p class="card-text" id="uvindex"></p>
-      </div>
-    </div>
-  </div>
-  <h3>5-Day Forecast:</h3>
-  <div class="container">
-    <div id="forecast">
-      <div class="fiveDayDiv col-2" id=1>
-        <h3 class="date"></h3>
-        <img class="icon">
-        <p class="temp"></p>
-        <p class="humidity"></p>
-      </div>
-      <div class="fiveDayDiv spaceNeeded col-2" id=2>
-        <h3 class="date"></h3>
-        <img class="icon">
-        <p class="temp"></p>
-        <p class="humidity"></p>
-      </div>
-      <div class="fiveDayDiv spaceNeeded col-2" id=3>
-        <h3 class="date"></h3>
-        <img class="icon">
-        <p class="temp"></p>
-        <p class="humidity"></p>
-      </div>
-      <div class="fiveDayDiv spaceNeeded col-2" id=4>
-        <h3 class="date"></h3>
-        <img class="icon">
-        <p class="temp"></p>
-        <p class="humidity"></p>
-      </div>
-      <div class="fiveDayDiv spaceNeeded col-2" id=5>
-        <h3 class="date"></h3>
-        <img class="icon">
-        <p class="temp"></p>
-        <p class="humidity"></p>
+      <div class="card text-center">
+        <div class="card-header">
+          <h3 id="city-name"></h3>
+          <img id="icon" />
+        </div>
+        <div class="card-body">
+          <h5 class="card-title" id="temp"></h5>
+          <h6 class="card-text" id="date"></h6>
+          <p class="card-text" id="humidity"></p>
+          <p class="card-text" id="wind-speed"></p>
+          <p class="card-text" id="uv-index"></p>
+        </div>
       </div>
     </div>
-  </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="./assets/js/app.js"></script>
-</body>
-
+    <h3>5-Day Forecast:</h3>
+    <div class="container">
+      <div id="forecast">
+        <div class="fiveDayDiv col-2" id="1">
+          <h3 class="date"></h3>
+          <img class="icon" />
+          <p class="temp"></p>
+          <p class="humidity"></p>
+        </div>
+        <div class="fiveDayDiv col-2" id="2">
+          <h3 class="date"></h3>
+          <img class="icon" />
+          <p class="temp"></p>
+          <p class="humidity"></p>
+        </div>
+        <div class="fiveDayDiv col-2" id="3">
+          <h3 class="date"></h3>
+          <img class="icon" />
+          <p class="temp"></p>
+          <p class="humidity"></p>
+        </div>
+        <div class="fiveDayDiv col-2" id="4">
+          <h3 class="date"></h3>
+          <img class="icon" />
+          <p class="temp"></p>
+          <p class="humidity"></p>
+        </div>
+        <div class="fiveDayDiv col-2" id="5">
+          <h3 class="date"></h3>
+          <img class="icon" />
+          <p class="temp"></p>
+          <p class="humidity"></p>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="./assets/js/app.js"></script>
+  </body>
 </html>

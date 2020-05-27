@@ -2,7 +2,7 @@
   text-align: center;
 }
 
-#leftcontent{
+#left-content {
   float: left;
 }
 
@@ -11,12 +11,9 @@
   width: 15%;
   border-radius: 10px;
   padding-right: 10px;
-  display: inline-table;
-  float: right
-}
-
-.spaceNeeded {
   margin-left: 10px;
+  display: inline-table;
+  float: right;
 }
 
 h3 {
