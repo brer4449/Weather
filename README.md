@@ -20,4 +20,3 @@ This project is a weather application. It uses OpenWeather's API to determine th
 - jQuery version 3
 - AJAX
 - Openweather API
-  test
